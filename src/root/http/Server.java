@@ -9,7 +9,7 @@ public class Server {
     private HttpServer httpServer;
     private Server(int port, String context) throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(port),0);
-        httpServer.createContext(context,new CustomContext());
+        httpServer.createContext("/"+context,new CustomContext(context));
         httpServer.start();
     }
 

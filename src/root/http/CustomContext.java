@@ -8,9 +8,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 
 public class CustomContext implements HttpHandler {
+    private  String context;
+    public CustomContext(String context) {
+        this.context = context;
+    }
+
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
@@ -18,7 +22,7 @@ public class CustomContext implements HttpHandler {
         String query = exchange.getRequestURI().toASCIIString() ;
         File index  ;
         try {
-            index = new File(getClass().getResource("/resources/html/index.html").toURI());
+            index = new File(getClass().getResource("/resources/html/"+context+".html").toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

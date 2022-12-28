@@ -31,7 +31,7 @@ public class MainJpanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                      server = Server.createServer(8000,"/test");
+                      server = Server.createServer(8000,"test");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
