@@ -1,7 +1,10 @@
 package root;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import org.kordamp.ikonli.octicons.Octicons;
+import org.kordamp.ikonli.swing.FontIcon;
 import root.Menu.MenuBar;
+import root.jpanel.MainJpanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,6 +28,7 @@ public class Main extends JFrame {
         }
         m.setIconImage(ImageIO.read(getClass().getResource("/resources/images/france.png")));
         m.setJMenuBar(new MenuBar());
+        m.setContentPane(new MainJpanel());
         m.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         m.setLocationRelativeTo(null);
         m.setSize(900, 700);
