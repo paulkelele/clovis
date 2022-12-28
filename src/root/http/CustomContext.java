@@ -3,8 +3,11 @@ package root.http;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 
 public class CustomContext implements HttpHandler {
@@ -13,8 +16,15 @@ public class CustomContext implements HttpHandler {
 
         String requestMethod = exchange.getRequestMethod();
         String query = exchange.getRequestURI().toASCIIString() ;
-        String response = "<b>Bonjour !</b></br>Méthode :  </br>"+requestMethod+" query "+query ;
-        byte[] r = response.getBytes(Charset.forName("ISO-8859-1"));
+        File index  ;
+        try {
+            index = new File(getClass().getResource("/resources/html/index.html").toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        FileInputStream fileInputStream = new FileInputStream(index);
+        exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+        byte[] r = fileInputStream.readAllBytes();
         exchange.sendResponseHeaders(200, r.length );
         OutputStream os = exchange.getResponseBody();
         os.write(r);
