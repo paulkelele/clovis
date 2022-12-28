@@ -31,7 +31,9 @@ public class MainJpanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                      server = Server.createServer(8000,"test");
+                    // créer un tableau de string et le traiter pour chaque context dans la class server
+                    String[] context = {"test", "toto"};
+                      server = Server.createServer(8000,context);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -7,13 +7,15 @@ import java.net.InetSocketAddress;
 
 public class Server {
     private HttpServer httpServer;
-    private Server(int port, String context) throws IOException {
+    private Server(int port, String[] context) throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(port),0);
-        httpServer.createContext("/"+context,new CustomContext(context));
+         for (int i = 0; i < context.length; i++) {
+            httpServer.createContext("/"+context[i],new CustomContext(context[i]));
+        }
         httpServer.start();
     }
 
-    public static Server createServer(int port, String context) throws IOException {
+    public static Server createServer(int port, String[] context) throws IOException {
         Server server = new Server(port, context);
         return server;
     }
