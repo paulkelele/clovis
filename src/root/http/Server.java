@@ -16,6 +16,7 @@ public class Server {
         start();
     }
 
+    // init server
     private void init(int port, String[] context) throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(port),0);
         for (int i = 0; i < context.length; i++) {
