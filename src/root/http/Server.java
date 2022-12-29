@@ -10,7 +10,7 @@ public class Server {
     private Server(int port, String[] context) throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(port),0);
          for (int i = 0; i < context.length; i++) {
-            httpServer.createContext("/"+context[i],new CustomContext(context[i]));
+            httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
         }
         httpServer.start();
     }

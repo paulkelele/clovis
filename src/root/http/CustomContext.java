@@ -17,7 +17,6 @@ public class CustomContext implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-
         String requestMethod = exchange.getRequestMethod();
         String query = exchange.getRequestURI().toASCIIString() ;
         File index  ;

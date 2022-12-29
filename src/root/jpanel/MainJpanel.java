@@ -32,7 +32,7 @@ public class MainJpanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 try {
                     // créer un tableau de string et le traiter pour chaque context dans la class server
-                    String[] context = {"test", "toto"};
+                    String[] context = {"index","test", "toto"};
                       server = Server.createServer(8000,context);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
