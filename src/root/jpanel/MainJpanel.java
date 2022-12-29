@@ -24,9 +24,11 @@ public class MainJpanel extends JPanel {
         northPanel.setLayout(boxLayout);
         FontIcon fontIcon = FontIcon.of(Octicons.STAR_24,14);
         FontIcon fontIcon2 = FontIcon.of(Octicons.STOP_24,14);
+        FontIcon fontIcon3 = FontIcon.of(Octicons.BELL_24,14);
         JPanel jPanelIcons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton jButton = new JButton( fontIcon);
         JButton jButton2 = new JButton( fontIcon2);
+        JButton jButton3 = new JButton( fontIcon3);
         jButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -45,8 +47,16 @@ public class MainJpanel extends JPanel {
                 server.stopServer(0);
             }
         });
+
+        jButton3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                server.reStart(0);
+            }
+        });
         jPanelIcons.add(jButton);
         jPanelIcons.add(jButton2);
+        jPanelIcons.add(jButton3);
         northPanel.add(jPanelIcons);
         return northPanel;
     }

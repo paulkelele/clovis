@@ -12,9 +12,12 @@ public class Server {
          for (int i = 0; i < context.length; i++) {
             httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
         }
-        httpServer.start();
+        start();
     }
 
+    private void start(){
+        httpServer.start();
+    }
     public static Server createServer(int port, String[] context) throws IOException {
         Server server = new Server(port, context);
         return server;
@@ -22,5 +25,10 @@ public class Server {
 
     public void stopServer(int delay){
         httpServer.stop(delay);
+    }
+
+    public void reStart(int delay){
+        stopServer(delay);
+        start();
     }
 }
