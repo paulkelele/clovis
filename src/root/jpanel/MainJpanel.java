@@ -51,7 +51,11 @@ public class MainJpanel extends JPanel {
         jButton3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                server.reStart(0);
+                try {
+                    server.reStart(0);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         jPanelIcons.add(jButton);

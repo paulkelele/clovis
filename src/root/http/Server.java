@@ -7,14 +7,21 @@ import java.net.InetSocketAddress;
 
 public class Server {
     private HttpServer httpServer;
+    private int port;
+    private String[] context;
     private Server(int port, String[] context) throws IOException {
-        httpServer = HttpServer.create(new InetSocketAddress(port),0);
-         for (int i = 0; i < context.length; i++) {
-            httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
-        }
+        this.port = port;
+        this.context = context;
+       init(port,context);
         start();
     }
 
+    private void init(int port, String[] context) throws IOException {
+        httpServer = HttpServer.create(new InetSocketAddress(port),0);
+        for (int i = 0; i < context.length; i++) {
+            httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
+        }
+    }
     private void start(){
         httpServer.start();
     }
@@ -27,8 +34,9 @@ public class Server {
         httpServer.stop(delay);
     }
 
-    public void reStart(int delay){
+    public void reStart(int delay) throws IOException {
         stopServer(delay);
+        init(this.port,this.context);
         start();
     }
 }
