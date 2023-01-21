@@ -32,7 +32,7 @@ public class Main extends JFrame {
         m.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         m.setLocationRelativeTo(null);
         m.setSize(900, 700);
-        m.setExtendedState(MAXIMIZED_BOTH);
+      //  m.setExtendedState(MAXIMIZED_BOTH);
         m.setVisible(true);
     }
 

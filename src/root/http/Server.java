@@ -19,12 +19,15 @@ public class Server {
     // init server
     private void init(int port, String[] context) throws IOException {
         httpServer = HttpServer.create(new InetSocketAddress(port),0);
-        for (int i = 0; i < context.length; i++) {
-            httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
-        }
+//        for (int i = 0; i < context.length; i++) {
+//            httpServer.createContext("/"+(context[i].equals("index")?"":context[i]),new CustomContext(context[i]));
+//        }
+        httpServer.createContext("/",new CustomContext());
+        httpServer.setExecutor(null);
     }
     private void start(){
         httpServer.start();
+        System.out.println("Server start at: "+this.port);
     }
     public static Server createServer(int port, String[] context) throws IOException {
         Server server = new Server(port, context);
@@ -33,6 +36,7 @@ public class Server {
 
     public void stopServer(int delay){
         httpServer.stop(delay);
+        System.out.println("Server stop.");
     }
 
     public void reStart(int delay) throws IOException {
